@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="css/normalize.css">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="css/lightslider.css" />
+    <script src="js/libraries/mustache.js"></script>
+	<script src="js/libraries/jquery-3.3.1.min.js"></script>
+	<title>All New!</title>
+</head>
+<body>
+	<div class="container">
+		<div class="products"></div>
+		<script id="products-template" type="x-tmpl-mustache">
+			{{#products}}
+			  <div id="{{id}}" class="product{{#hasCarousel}} carousel{{/hasCarousel}}">
+			  	<img class="product-thumbnail" src="{{hero.href}}" data-index="0" />
+			  	
+			  	{{#images}}
+				  	<img class="carousel-image" src="{{href}}" />
+				 {{/images}}
+			  	
+			  	<h2 class="product-name">{{name}}</h2>
+			  	{{#priceRange}}
+			  		<p class="product-price">${{priceRange.selling.low}} - ${{priceRange.selling.high}}</p>
+			  	{{/priceRange}}
+			  	{{#price}}
+			  		<p class="product-price">${{price.selling}}</p>
+			  	{{/price}}
+			  </div>
+			{{/products}}
+		</script>
+	</div>
+
+	<script src="data/productsJson.js" type="text/javascript"></script>
+	<script src="js/components/products-component.js"></script>
+	<script src="js/components/photo-slider.js"></script>
+	<script type="text/javascript">
+		initProducts(productsJson);
+		initPhotoSlider();
+	</script>
+</body>
+</html>
