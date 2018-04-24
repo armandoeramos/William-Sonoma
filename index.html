@@ -3,9 +3,10 @@
 <head>
 	<link type="text/css" rel="stylesheet" href="css/normalize.css">
     <link type="text/css" rel="stylesheet" href="css/main.css">
-    <link type="text/css" rel="stylesheet" href="css/lightslider.css" />
+    <link type="text/css" rel="stylesheet" href="css/lightbox.min.css" />
     <script src="js/libraries/mustache.js"></script>
 	<script src="js/libraries/jquery-3.3.1.min.js"></script>
+	
 	<title>All New!</title>
 </head>
 <body>
@@ -14,10 +15,14 @@
 		<script id="products-template" type="x-tmpl-mustache">
 			{{#products}}
 			  <div id="{{id}}" class="product{{#hasCarousel}} carousel{{/hasCarousel}}">
-			  	<img class="product-thumbnail" src="{{hero.href}}" data-index="0" />
 			  	
+			  	<a href="{{hero.href}}" data-lightbox="{{id}}" data-title="{{name}}">
+			  		<img class="product-thumbnail " src="{{hero.href}}"/>
+			  	</a>
 			  	{{#images}}
-				  	<img class="carousel-image" src="{{href}}" />
+				  	<a href="{{href}}" data-lightbox="{{id}}" data-title="{{name}}">
+				  		<img class="carousel-image " src="{{href}}"/>
+				  	</a>
 				 {{/images}}
 			  	
 			  	<h2 class="product-name">{{name}}</h2>
@@ -32,9 +37,9 @@
 		</script>
 	</div>
 
+	<script src="js/libraries/lightbox.min.js"></script>
 	<script src="data/productsJson.js" type="text/javascript"></script>
 	<script src="js/components/products-component.js"></script>
-	<script src="js/components/photo-slider.js"></script>
 	<script type="text/javascript">
 		initProducts(productsJson);
 		initPhotoSlider();
